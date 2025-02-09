@@ -20,22 +20,22 @@ public class ScheduleController {
         return ResponseEntity.ok(scheduleService.save(scheduleRequestDto));
     }
 
-    @GetMapping("/members")
+    @GetMapping("/schedules")
     public ResponseEntity<List<ScheduleResponseDto>> findAll(){
         return ResponseEntity.ok(scheduleService.findall());
     }
 
-    @GetMapping("/members/{id]")
-    public ResponseEntity<ScheduleResponseDto> findById(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto){
-        return ResponseEntity.ok(scheduleService.findById(id, scheduleRequestDto));
+    @GetMapping("/schedules/{id}")
+    public ResponseEntity<ScheduleResponseDto> findById(@PathVariable Long id){
+        return ResponseEntity.ok(scheduleService.findById(id));
     }
 
-    @PutMapping("/members/{id}")
+    @PutMapping("/schedules/{id}")
     public ResponseEntity<ScheduleResponseDto> update(@PathVariable Long id, @RequestBody ScheduleRequestDto scheduleRequestDto){
         return ResponseEntity.ok(scheduleService.update(id, scheduleRequestDto));
     }
 
-    @DeleteMapping("/members/{id}")
+    @DeleteMapping("/schedules/{id}")
     public void delete(@PathVariable Long id){
         scheduleService.delete(id);
     }

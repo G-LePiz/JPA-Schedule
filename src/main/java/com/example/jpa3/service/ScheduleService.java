@@ -34,7 +34,7 @@ public class ScheduleService {
         return dtos;
     }
 
-    public ScheduleResponseDto findById(Long id, ScheduleRequestDto scheduleRequestDto) {
+    public ScheduleResponseDto findById(Long id) {
         Schedule schedule = scheduleRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException("일정이 없습니다")
         );
@@ -47,7 +47,7 @@ public class ScheduleService {
                 () -> new IllegalArgumentException("일정 수정이 불가능")
         );
 
-        schedule.update(schedule.getTodo());
+        schedule.update(scheduleRequestDto.getTodo());
 
         return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser());
     }
