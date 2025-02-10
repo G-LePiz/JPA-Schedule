@@ -20,7 +20,7 @@ public class ScheduleService {
         Schedule schedule = new Schedule(scheduleRequestDto.getTodo(), scheduleRequestDto.getUser());
         scheduleRepository.save(schedule);
 
-        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser());
+        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser(), schedule.getCreateDate(),schedule.getUpdateDate());
     }
 
     public List<ScheduleResponseDto> findall() {
@@ -28,7 +28,7 @@ public class ScheduleService {
         List<ScheduleResponseDto> dtos = new ArrayList<>();
 
         for (Schedule schedule : schedules) {
-            dtos.add(new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser()));
+            dtos.add(new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser(), schedule.getCreateDate(),schedule.getUpdateDate()));
         }
 
         return dtos;
@@ -39,7 +39,7 @@ public class ScheduleService {
                 () -> new IllegalArgumentException("일정이 없습니다")
         );
 
-        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser());
+        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser(), schedule.getCreateDate(),schedule.getUpdateDate());
     }
 
     public ScheduleResponseDto update(Long id, ScheduleRequestDto scheduleRequestDto) {
@@ -49,7 +49,7 @@ public class ScheduleService {
 
         schedule.update(scheduleRequestDto.getTodo());
 
-        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser());
+        return new ScheduleResponseDto(schedule.getId(), schedule.getTodo(), schedule.getUser(), schedule.getCreateDate(),schedule.getUpdateDate());
     }
 
     public void delete(Long id) {
